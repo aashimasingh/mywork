@@ -1,0 +1,152 @@
+<html>
+<head>
+<script type='text/javascript'>
+function formValidation()
+{
+	var name=document.reg.name;
+	var sex=document.reg.gr;
+	var age=document.reg.age;
+	var add=document.reg.addr;
+	var city=document.reg.city;
+	var state=document.reg.state;
+	var ctry=document.reg.country;
+	var email=document.reg.email;
+	var uname=document.reg.username;
+	var pass=document.reg.pass;
+	var pass2=document.reg.pass2;
+		
+	if(allAlpha(name))
+	{
+	if(ageSelect(age))
+	{
+	if(validateEmail(email))
+	{
+	if(userValid(uname))
+	{
+	if(passCheck(pass,pass2))
+	{
+		alert('Form Succesfully Submitted');
+		window.location.reload()
+		return true;
+	}
+	}
+	}
+	}
+	}
+	return false; 
+}
+function allAlpha(name)  
+{   
+	var letters = /^[A-Za-z]+$/;  
+
+	if(name.value.match(letters))  
+	return true;  
+	else  
+	{ 	 
+		alert('Name must have alphabet characters only');  
+		name.focus();  
+		return false;  
+	}  
+}
+function userValid(uname)  
+{   
+	var letters = /^[0-9A-Za-z]+$/;  
+	if(uname.value.match(letters))  
+	return true;  
+	else  
+	{ 	 
+		alert('Username must have alphanumeric characters only');  
+		uname.focus();  
+		return false;  
+	}  
+}
+function validateEmail(email)  
+{  
+		var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;  
+		if(email.value.match(mailformat))   
+			return true;  
+		else  
+		{  
+			alert("You have entered an invalid email address!");  
+			email.focus();  
+			return false;  
+		}  
+	} 
+function passCheck(pass, pass2)
+{
+		var len=pass.value.length;
+		if(len<5||len>12)
+		{
+			alert("Password must be between 5-12 characters");  
+			pass.focus();  
+			return false; 
+		}
+		else
+		{
+		if(pass.localeCompare(pass2)==0)
+			return true;
+		else  
+		{  
+			alert("Passwords don't match");  
+			pass2.focus();  
+			return false;  
+		} 
+		}
+	}
+function ageSelect(age)
+{
+	if(age.value == "Select an age range")
+	{
+	alert('Select your age range from the list');
+	age.focus();
+	return false;
+	}
+	else
+		return true;
+}
+
+
+</script>
+<title>
+Registration Form
+</title>
+</head>
+<body bgcolor=eeefff leftmargin=20 onload=document.reg.name.focus()>
+<font face=verdana>
+<center><h1> Registration Form</h1></center>
+</font>
+<hr>
+<font face=verdana>
+
+<form name="reg" onSubmit="return formValidation();" >
+<big>Full Name: </big><input type=text name="name"><br>
+<big>Gender: </big><input type=radio name="gr"> Male <input type=radio name="gr"> Female<br>
+<big>Age: </big><select name="age" value="Select a range">
+<option>Select an age range</option>
+<option>&lt13</option>
+<option>13-18</option>
+<option>18-20</option>
+<option>21-25</option>
+<option>25-30</option>
+<option>30-40</option>
+<option>&gt40</option></select><br><br>
+<big>Permanent Address </big><textarea cols=50 rows=4 name="addr"></textarea><br><br>
+<big>City: </big><input type=text name="city"><br>
+<big>State: </big><input type=text name="state"><br>
+<big>Pincode: </big><input type=text name="pin"><br>
+<big>Country: </big><input type=text name="country"><br><br>
+<big>Select your interests </big><br>
+<input type=checkbox name="reading">Reading<br> 
+<input type=checkbox name="watching">Watching TV<br> 
+<input type=checkbox name="swimmming">Swimming<br> <br>
+<big>Enter email </big><input type=text name="email"><br> 
+<big>Enter username </big><input type=text name="username"><br> 
+<big>Enter password </big><input type=password name="pass"><br> 
+<big>Enter password again </big><input type=password name="pass2"><br> 
+<big>Enter a secret question </big><input type=input name="question"><br> 
+<big>Enter answer to secret question </big><input type=input name="answer"><br><br> 
+<center><input type=submit name="submit" value="Submit"> <input type=reset></center>
+</form>
+</font>
+</body>
+</html>
